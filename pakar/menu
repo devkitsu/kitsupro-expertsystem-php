@@ -1,0 +1,77 @@
+<?php 
+include "../lib/inc.koneksidb.php";
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <?php include "../lib/inc.head.php";?>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="isi"><br>
+
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+   <?php include "../lib/inc.dashboardpakar.php";?>
+   
+  <!-- navbar kanan collapse -->
+    <?php include "../lib/inc.navbar.php";?>
+    <!-- /.navbar-collapse -->
+	
+    </div><!-- /.container-fluid -->
+  </nav> </br>
+
+  <div class="container-fluid main-container">
+      <div class="col-md-2 sidebar">
+        <div class="row">
+  <!-- uncomment code for absolute positioning tweek see top comment in css -->
+  <div class="absolute-wrapper"> </div>
+  
+<!-- menu -->
+  <?php include "../lib/inc.menu.php";?>
+  <!-- menu -->
+  
+      <div class="col-md-10 content">
+          <div class="panel panel-default">
+  <div class="panel-heading">
+    <b>HALAMAN UTAMA</b>
+  </div>
+  <div class="panel-body">
+    Selamat datang di Sistem Pakar Diagnosa Penyakit Umum pada Kucing.
+	<br>
+	<?php		
+			$sql  = " SELECT * FROM users WHERE username='" . $_SESSION['username'] . "'";
+			$qry  = mysql_query($sql, $koneksi) or die ("SQL Error".mysql_error());
+			$data = mysql_fetch_array($qry);
+			?>
+		<?php
+		if($data['hak_akses'] == "Admin") { # Admin's features
+		?>
+		  <br>Ini adalah dashboard untuk admin dalam melakukan pengembangan terhadap sistem.
+		  <?php
+        } else { # Doctor's features
+      ?>
+		  <br>Ini adalah dashboard untuk pakar dalam melakukan input basis pengetahuan terhadap sistem.
+		<?php
+        }
+      ?>
+	  <br><br>Nama &emsp;&emsp;: <b><?php echo $data['name'];?></b>
+	  <br>Username &nbsp;: <b><?php echo $data['username'];?></b>
+	  <br>Hak Akses	&nbsp;: <b><?php echo $data['hak_akses'];?></b>
+	<br><center><img src="../images/nyanko.png"></center>
+  </div>
+</div>
+      </div>
+
+
+    </div>
+</br>
+       <!-- footer start -->
+<?php include "../lib/inc.footer.php";?>
+<!-- footer end -->
+</br>
+</div>
+</div>
+</body>
+</html>
