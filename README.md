@@ -1,4 +1,4 @@
-# kitsu-pro
+# kitsupro-ExpertSystemForwardChaining-PHP
 Code Project from kitsuDev
 
 Code Project from kitsuDev | Simple Expert System for Diagnosing Cat Disease
